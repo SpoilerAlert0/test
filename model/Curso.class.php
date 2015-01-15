@@ -2,12 +2,20 @@
 
     class Curso
     {
-    	private $nome;
-    	private $area;
-    	private $coordenador;
+    	private $id;
+        private $nome;
+    	private $cargaHoraria;
 
         public function __construct(){}  
 
+        public function getId()
+        {
+            return $this->id;
+        }
+        public function setId($id)
+        {
+            $this->id =  $id;
+        }
         public function getNome()
         {
         	return $this->nome;
@@ -16,21 +24,14 @@
         {
         	$this->nome = $nome;
         }
-        public function getArea()
+        
+        public function getCargaHoraria()
         {
-        	return $this->area;
+            return $this->cargaHoraria;
         }
-        public function setArea($area)
+        public function setCargaHoraria($cargaHoraria)
         {
-        	$this->area = $area;
-        }
-        public function getCoordenador()
-        {
-        	return $this->coordenador;
-        }
-        public function setCoordenador($coordenador)
-        {
-        	$this->coordenador = $coordenador;
+            $this->cargaHoraria = $cargaHoraria;
         }
 
     }

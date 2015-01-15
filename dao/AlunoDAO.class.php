@@ -7,14 +7,16 @@ require_once '../../model/Aluno.class.php';
         public function __construct(){} 
         public function salvar($object)
         {            
-           $nome =  $object->getNome();
-           $endereco = $object->getEndereco();
-           $sexo =  $object->getSexo();
-           $idade =  $object->getIdade();
+            $nome = $object->getNome();
+            $endereco = $object->getEndereco();
+            $telefone = $object->getTelefone();
+            $rg = $object->getRg();
+            $cpf = $object->getCpf();
+            $ra = $object->getRa();
             try
             {
                 $conexao = Connection::connect();
-                $query = "insert into aluno (nome, endereco, sexo, idade) values ('{$nome}', '{$endereco}', '{$sexo}', '{$idade}')";
+                $query = "insert into aluno (endereco, telefone, rg, cpf, nome, ra) values ('{$endereco}', '{$telefone}', '{$rg}', '{$cpf}', '{$nome}', '{$ra}')";
                 mysqli_query($conexao, $query);
                 mysqli_close($conexao);
             }
@@ -29,7 +31,6 @@ require_once '../../model/Aluno.class.php';
             {
                 $conexao = Connection::connect();
                 $query = "select * from aluno";
-                //$query = "select nome, endereco, sexo, idade from aluno";
                 $a =  mysqli_query($conexao, $query);
                 mysqli_close($conexao);
                 return $a; 
@@ -44,7 +45,7 @@ require_once '../../model/Aluno.class.php';
             try
             {
                 $conexao = Connection::connect();
-                $query = "select nome, endereco, sexo, idade from aluno where ra_aluno = '{$id}'";
+                $query = "select nome, endereco, telefone, rg, cpf from aluno where id_aluno = '{$id}'";
                 $a =  mysqli_query($conexao, $query);
                 mysqli_close($conexao);
                 return $a; 
@@ -54,19 +55,26 @@ require_once '../../model/Aluno.class.php';
                 echo $e;
             }
         }
-        public function  alterar($ra)
+        public function  alterar($object)
         {
+            $id = $object->getId();
+            $nome = $object->getNome();
+            $endereco = $object->getEndereco();
+            $telefone = $object->getTelefone();
+            $rg = $object->getRg();
+            $cpf = $object->getCpf();
+            $ra = $object->getRa();
             $conexao = Connection::connect();            
-            $query = "update aluno set nome='{$nome}', endereco ='{$endereco}', sexo='{$sexo}', idade='{$idade}' where ra_aluno = '{$ra}'";
+            $query = "update aluno set nome='{$nome}', endereco='{$endereco}', telefone='{$telefone}', rg='{$rg}', cpf='{$cpf}', ra='{$ra}' where id_aluno = '{$id}'";
             mysqli_query($conexao, $query);
             mysqli_close($conexao);
         }
-        public function deletar($ra)
+        public function deletar($id)
         {
             try
             {
                 $conexao = Connection::connect();
-                $query = "delete from aluno where ra_aluno='{$ra}'";
+                $query = "delete from aluno where id_aluno='{$id}'";
                 mysqli_query($conexao, $query);
                 mysqli_close($conexao);
             }
@@ -76,14 +84,3 @@ require_once '../../model/Aluno.class.php';
             }
         }
     }
-        function listaCategorias() 
-        {
-            $conexao = Connection::connect();
-            $categorias = array();
-            $query = "select * from categorias";
-            $resultado = mysqli_query($conexao, $query);
-            while($categoria = mysqli_fetch_assoc($resultado)) {
-                array_push($categorias, $categoria);
-            }
-            return $categorias;
-        } 

@@ -4,13 +4,12 @@ include_once('/../dao/IndexDAO.class.php');
 //implicitamente
     class IndexController
     {
-    	
      public function __construct(){}
-        
+     
        public function login($email, $senha)
         {
-                $dao = new IndexDAO();
-                return $dao->login($email, $senha);
+          $dao = new IndexDAO();
+          return $dao->login($email, $senha);
         }
     }
     

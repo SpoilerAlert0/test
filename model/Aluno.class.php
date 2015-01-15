@@ -1,18 +1,24 @@
 <?php
-
     class Aluno
     {
+        private $id;
         private $ra;
         private $nome;
-        private $curso;
         private $endereco;
         private $telefone;
         private $rg;
         private $cpf;
-
         
         public function __construct(){}
-        
+
+        public function getId()
+        {
+            return $this->id;
+        }
+        public function setId($id)
+        {
+            $this->id = $id;
+        }
         public function getRa()
         {
             return $this->ra;
@@ -30,15 +36,6 @@
         {
             $this->nome = $nome;
         }
-        public function getCurso()
-        {
-            return $this->curso;
-        }
-        public function setCurso($curso)
-        {
-            $this->curso = $curso;
-        }
-
         public function getEndereco()
         {
             return $this->endereco;
@@ -47,21 +44,28 @@
         {
             $this->endereco = $endereco;
         }
-        public function getSexo()
+        public function getTelefone()
         {
-            return $this->sexo;
+            return $this->telefone;
         }
-        public function setSexo($sexo)
+        public function setTelefone($telefone)
         {
-            $this->sexo = $sexo;
+            $this->telefone = $telefone;
         }
-
-        public function getIdade()
+        public function getRg()
         {
-            return $this->idade;
+            return $this->rg;
         }
-        public function setIdade($idade)
+        public function setRg($rg)
         {
-            $this->idade = $idade;
+            $this->rg = $rg;
+        }
+        public function getCpf()
+        {
+            return $this->cpf;
+        }
+        public function setCpf($cpf)
+        {
+            $this->cpf = $cpf;
         }
     }

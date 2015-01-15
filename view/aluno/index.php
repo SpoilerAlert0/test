@@ -13,9 +13,8 @@ $b = new AlunoController();
   <thead>
     <tr>
       <th>Nome</th>
-      <th>Endereço</th>
-      <th>Sexo</th>
-      <th>Idade</th>
+      <th>Endereco</th>
+      <th>Telefone</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -26,43 +25,26 @@ $b = new AlunoController();
         { 
   ?>
       <tr>
-        <td><?php echo $alunos['nome']?></td>
-        <td><?php echo $alunos['endereco']?></td>
-        <td><?php echo $alunos['sexo']?></td>
-        <td><?php echo $alunos['idade']?></td>
-        <td><?php echo $alunos['ra_aluno']?></td>
+        <td><?php echo $alunos['NOME']?></td>
+        <td><?php echo $alunos['ENDERECO']?></td>
+        <td><?php echo $alunos['TELEFONE']?></td>
         <td>
-        <form method="POST" action="">
-            <button class="btn btn-primary pull-right" type="submit" name="delete" value=<?= $alunos['ra_aluno'] ?> >
+        <form method="POST" action="excluir.php">
+            <button class="btn btn-primary pull-right" type="submit" name="delete" value=<?= $alunos['ID_ALUNO'] ?> >
                 <span class="glyphicon glyphicon-remove-sign"></span>
             </button>
         </form>
-        <form method="GET" action="">
-            <button class="btn btn-primary pull-right" type="submit" name="edit" >
-    			     <span class="glyphicon glyphicon-edit"></span>
-    	      </button>
+        <form method="GET" action="alterar.php">
+            <button class="btn btn-primary pull-right" type="submit" name="update" value=<?= base64_encode(serialize($alunos)) ?>>
+              <span class="glyphicon glyphicon-edit"></span>
+            </button>
         </form>
-        <form method="GET" action="selecionar.php">
-            <button class="btn btn-primary pull-right" type="submit" name="select" value=<?= $alunos['ra_aluno'] ?>>
+        <form method="POST" action="selecionar.php">
+            <button class="btn btn-primary pull-right" type="submit" name="select" value=<?= base64_encode(serialize($alunos)) ?>>
                <span class= "glyphicon glyphicon-search"></span>
             </button>
-        </form>  
-            <?php  
-              if($_SERVER['REQUEST_METHOD'] == 'POST')
-              { 
-                  if(isset($_POST['delete']))
-                  {
-                    $b->deletar($_POST['delete']);
-            ?>
-                  <script type="text/javascript">
-                    window.location.replace("index.php")
-                  </script>
-            <?php
-                  }
-              }
-        }
-            ?>
         </form> 
+        <?php } ?>
 	     	</td>
       </tr>
   </tbody>
